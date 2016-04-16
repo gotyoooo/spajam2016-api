@@ -45,6 +45,43 @@ io.on('connection', function(socket){
     socket.on('chat message', function(msg){
         console.log(msg);
         io.emit('chat message', msg);
+
+        var request = require('request')
+        var line_conf = require('../routes/line_conf.json')
+        var fixie_conf = require('../routes/fixie_conf.json')
+
+        var proxy = request.defaults(fixie_conf)
+
+        var headers = {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'X-Line-ChannelID': line_conf['X-Line-ChannelID'],
+          'X-Line-ChannelSecret': line_conf['X-Line-ChannelSecret'],
+          'X-Line-Trusted-User-With-ACL': line_conf['X-Line-Trusted-User-With-ACL']
+        }
+
+        var content = {
+          "contentType":1,
+          "toType":1,
+          "text": msg
+        }
+
+        var options = {
+          url: 'https://trialbot-api.line.me/v1/events',
+          method: 'POST',
+          headers: headers,
+          json: true,
+          body: {
+            'to': 'ueb6bb14fecfd1ace526d7d7561b81619',
+            'toChannel': 1383378250,
+            'eventType': "138311608800106203",
+            'content':content
+          }
+        }
+        proxy(options, (err, res, body) => {
+          if (err) {
+            console.log(err);
+          }
+        });
     });
     // disconnect socket
     socket.on('disconnect', function(){
