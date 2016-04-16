@@ -81,6 +81,9 @@ io.on('connection', function(socket){
           if (err) {
             console.log(err);
           }
+          console.log(options);
+          console.log(res);
+          console.log(body);
         });
     });
     // disconnect socket
