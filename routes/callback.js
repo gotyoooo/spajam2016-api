@@ -48,7 +48,8 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', (req, res, next) => {
-  var results = req.body.result
+  var results = req.body.result;
+  console.log(results);
   results.forEach((result) => {
     switch (result.eventType) {
       // receive operation
