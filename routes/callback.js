@@ -50,6 +50,9 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource from callback');
 });
 
+
+var fs = require('fs');
+var log_file = './chat.csv';
 router.post('/', (req, res, next) => {
   var results = req.body.result;
   console.log(results);
@@ -68,6 +71,15 @@ router.post('/', (req, res, next) => {
           "text": result.content.text
         }
         sendMessage([result.content.from], content)
+
+        var data = {
+          "to": "you",
+          "from": result.content.from,
+          "text": result.content.text
+        };
+        fs.appendFile(log_file, data.to + ',' + data.from + ',' + data.text + '\n' ,'utf8', function (err) {
+            console.log(err);
+        });
         break;
       default:
     }
