@@ -43,6 +43,10 @@ function recvOperation(content) {
   sendMessage(id, content)
 }
 
+router.get('/', function(req, res, next) {
+  res.send('respond with a resource from callback');
+});
+
 router.post('/', (req, res, next) => {
   var results = req.body.result
   results.forEach((result) => {
