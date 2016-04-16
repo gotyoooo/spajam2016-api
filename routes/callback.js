@@ -28,8 +28,11 @@ function sendMessage(to, content) {
   }
   proxy(options, (err, res, body) => {
     if (err) {
-      console.log(err)
+      console.log(err);
     }
+    console.log(options);
+    console.log(res);
+    console.log(body);
   })
 }
 
