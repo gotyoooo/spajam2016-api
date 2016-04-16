@@ -121,7 +121,14 @@ fs.open(log_file, "r", "0666",function(err,fd){
             var log = buffer.toString('utf8', 0, bytesRead);
             console.log("== log update ==" + log);
             // changeをログの内容つけて送信する
-            io.sockets.emit('chat message', log);
+            log_array = log.split(',');
+            var data = {
+              "to": log_array[0],
+              "from": log_array[1],
+              "text": log_array[2]
+            };
+            console.log("== log update json ==" + JSON.stringify(data));
+            io.sockets.emit('chat message', JSON.stringify(data));
           }
         );
       }
