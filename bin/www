@@ -121,7 +121,7 @@ fs.open(log_file, "r", "0666",function(err,fd){
             var log = buffer.toString('utf8', 0, bytesRead);
             console.log("== log update ==" + log);
             // changeをログの内容つけて送信する
-            log_array = log.split(',');
+            log_array = log.replace(/\r?\n/g,"").split(',');
             var data = {
               "to": log_array[0],
               "from": log_array[1],
