@@ -62,7 +62,7 @@ io.on('connection', function(socket){
         var content = {
           "contentType":1,
           "toType":1,
-          "text": msg
+          "text": msg.value
         }
 
         var options = {
