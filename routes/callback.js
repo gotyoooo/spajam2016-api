@@ -70,7 +70,7 @@ router.post('/', (req, res, next) => {
           "toType":1,
           "text": result.content.text
         }
-        sendMessage([result.content.from], content)
+        //sendMessage([result.content.from], content)
 
         var data = {
           "to": "you",
