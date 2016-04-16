@@ -34,10 +34,11 @@ server.on('listening', onListening);
  * Socket
  */
 
+var user = {};
 var io = require('socket.io')(server);
 io.on('connection', function(socket){
     socket.on("connected", function (name) {
-        userHash[socket.id] = name;
+        user[socket.id] = name;
         console.log(name);
     }); 
     // show chat message
