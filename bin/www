@@ -71,7 +71,7 @@ io.on('connection', function(socket){
           headers: headers,
           json: true,
           body: {
-            'to': 'ueb6bb14fecfd1ace526d7d7561b81619',
+            'to': ['ueb6bb14fecfd1ace526d7d7561b81619'],
             'toChannel': 1383378250,
             'eventType': "138311608800106203",
             'content':content
